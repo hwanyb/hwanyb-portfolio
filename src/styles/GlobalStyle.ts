@@ -26,6 +26,15 @@ export const GlobalStyle = createGlobalStyle`
         @media ${(props) => props.theme.windowSize.desktop} {
             font-size: 15px;
         }
+        @media ${(props) => props.theme.windowSize.laptop} {
+            font-size: 14px;
+        }
+        @media ${(props) => props.theme.windowSize.tablet} {
+            font-size: 13px;
+        }
+        @media ${(props) => props.theme.windowSize.mobile} {
+            font-size: 12px;
+        }
     }
     body {
         transition: background-color 0.3s ease-in-out, color 0.8s ease-in-out;
