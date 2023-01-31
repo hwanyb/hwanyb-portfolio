@@ -62,5 +62,12 @@ export const GlobalStyle = createGlobalStyle`
         cursor: pointer;
         border-radius: 2rem;
         padding: 0.3rem 1rem;
+        transition: all 0.3s ease-in-out;
     }
+
+    @media (hover: hover) {
+        button:hover {
+            background-color: ${(props) => props.theme.color.textColor}10;
+    } 
+}
 `;
