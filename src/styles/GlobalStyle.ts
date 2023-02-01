@@ -9,20 +9,21 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
     }
     *::-webkit-scrollbar {
-            width: 5px;
-            height: 5px;
+            width: 8px;
+            height: 8px;
     }
     *::-webkit-scrollbar-track {
-            background-color: ${(props) => props.theme.color.textColor}30;
             border-radius: 10px;
+            border: ${(props) => props.theme.color.borderColor}50;
     }
     *::-webkit-scrollbar-thumb {
-            background-color: ${(props) => props.theme.color.textColor}30;
+            background-color: ${(props) => props.theme.color.textColor}50;
             border-radius: 10px;
     }
     html {
         font-size: 16px;
         font-family: 'Pretendard';
+        overflow: hidden;
         @media ${(props) => props.theme.windowSize.desktop} {
             font-size: 15px;
         }
@@ -37,7 +38,7 @@ export const GlobalStyle = createGlobalStyle`
         }
     }
     body {
-        transition: background-color 0.3s ease-in-out, color 0.8s ease-in-out;
+        transition: background-color 0.5s ease-in-out, color 1s ease-in-out;
         background-color: ${(props) => props.theme.color.bgColor};
         color: ${(props) => props.theme.color.textColor};
     }
@@ -61,7 +62,7 @@ export const GlobalStyle = createGlobalStyle`
         font-size: ${(props) => props.theme.fontSize.base};
         cursor: pointer;
         border-radius: 2rem;
-        padding: 0.3rem 1rem;
+        padding: 0.2rem 1rem;
         transition: all 0.3s ease-in-out;
     }
 
@@ -69,5 +70,27 @@ export const GlobalStyle = createGlobalStyle`
         button:hover {
             background-color: ${(props) => props.theme.color.textColor}10;
     } 
+}
+
+.transition-group {
+  position: relative;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: all 1s ease-in-out;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: all 1s ease-in-out;
 }
 `;
