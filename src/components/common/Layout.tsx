@@ -1,6 +1,14 @@
 import React from "react";
-import Header from "./Header";
+import { Route, Routes, useLocation } from "react-router-dom";
 import styled from "styled-components";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+
+import Header from "./Header";
+import Background from "./Background";
+import Home from "../../pages/Home";
+import About from "../../pages/About";
+import Projects from "../../pages/Projects";
+import Contact from "../../pages/Contact";
 
 const Base = styled.div`
   width: 100vw;
@@ -24,15 +32,28 @@ const Main = styled.main`
   height: calc(100% - 100px);
   @media ${(props) => props.theme.windowSize.tablet} {
     height: calc(100% - 150px);
-
   }
 `;
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout() {
+  const location = useLocation();
+
   return (
-    <Base>
-      <Header />
-      <Main>{children}</Main>
-    </Base>
+    <TransitionGroup className="transition-group">
+      <CSSTransition key={location.pathname} timeout={1000} classNames="fade">
+        <Base>
+          <Background />
+          <Header />
+          <Main>
+            <Routes location={location}>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+          </Main>
+        </Base>
+      </CSSTransition>
+    </TransitionGroup>
   );
 }
