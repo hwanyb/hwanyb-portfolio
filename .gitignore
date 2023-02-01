@@ -24,3 +24,9 @@ yarn-error.log*
 
 # data
 /src/data
+
+# assets
+/public/assets
+
+# env
+.env
