@@ -3,6 +3,10 @@ import styled from "styled-components";
 
 import projectsData from "../data/projects.json";
 import ProjectDetail from "../components/ProjectDetail";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
 
 const Base = styled.div`
   height: 100%;
@@ -13,25 +17,18 @@ const Base = styled.div`
     padding-top: 50px;
   }
 `;
-const ProjectsContainer = styled.div`
+const ProjectsWrapper = styled(Swiper)`
+  padding: 1rem 1rem;
   width: 100%;
-  overflow-y: hidden;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  scroll-snap-type: mandatory;
-  padding: 1rem;
-`;
-const ProjectsWrapper = styled.ul`
-  width: fit-content;
-  display: flex;
-  gap: 4rem;
+  height: 80%;
   margin-bottom: 50px;
   @media ${(props) => props.theme.windowSize.mobile} {
     margin-bottom: 30px;
   }
 `;
-const ProjectItem = styled.li`
-  width: 460px;
+const ProjectItem = styled(SwiperSlide)`
+  height: 95%;
+
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 30px;
   padding: 2rem;
@@ -48,12 +45,6 @@ const ProjectItem = styled.li`
     &:hover {
       background-color: rgba(255, 255, 255, 0.5);
     }
-  }
-  @media ${(props) => props.theme.windowSize.tablet} {
-    width: 380px;
-  }
-  @media ${(props) => props.theme.windowSize.mobile} {
-    width: 300px;
   }
 `;
 const ThumbnailWrapper = styled.div`
@@ -128,8 +119,9 @@ export type ProjectItem = {
 export default function Projects() {
   const [isDetailOpened, setIsDetailOpened] = useState(false);
   const [selectedData, setSelectedData] = useState<ProjectItem | null>(null);
+
   const onCardClick = (
-    e: React.SyntheticEvent<HTMLLIElement>,
+    e: React.SyntheticEvent<HTMLElement>,
     item: ProjectItem,
   ) => {
     setIsDetailOpened(true);
@@ -144,31 +136,42 @@ export default function Projects() {
         />
       ) : (
         <Base>
-          <ProjectsContainer>
-            <ProjectsWrapper>
-              {projectsData
-                .sort((a, b) => b.id - a.id)
-                .map((item) => (
-                  <ProjectItem
-                    key={item.id}
-                    onClick={(e: React.SyntheticEvent<HTMLLIElement>) =>
-                      onCardClick(e, item)
-                    }
-                  >
-                    <ThumbnailWrapper>
-                      <ThumbnailImg
-                        src={process.env.PUBLIC_URL + item.thumbnail}
-                      />
-                    </ThumbnailWrapper>
-                    <Desc>{item.scale}</Desc>
-                    <Title>{item.title}</Title>
-                    <Skills>{item.skills}</Skills>
-                    <Hr />
-                    <Desc>{item.short}</Desc>
-                  </ProjectItem>
-                ))}
-            </ProjectsWrapper>
-          </ProjectsContainer>
+          <ProjectsWrapper
+            spaceBetween={50}
+            slidesPerView={1}
+            pagination={{ clickable: true }}
+            modules={[Pagination]}
+            breakpoints={{
+              768: {
+                slidesPerView: 2,
+              },
+              1440: {
+                slidesPerView: 3,
+              },
+            }}
+          >
+            {projectsData
+              .sort((a, b) => b.id - a.id)
+              .map((item) => (
+                <ProjectItem
+                  key={item.id}
+                  onClick={(e: React.SyntheticEvent<HTMLElement>) =>
+                    onCardClick(e, item)
+                  }
+                >
+                  <ThumbnailWrapper>
+                    <ThumbnailImg
+                      src={process.env.PUBLIC_URL + item.thumbnail}
+                    />
+                  </ThumbnailWrapper>
+                  <Desc>{item.scale}</Desc>
+                  <Title>{item.title}</Title>
+                  <Skills>{item.skills}</Skills>
+                  <Hr />
+                  <Desc>{item.short}</Desc>
+                </ProjectItem>
+              ))}
+          </ProjectsWrapper>
         </Base>
       )}
     </>
