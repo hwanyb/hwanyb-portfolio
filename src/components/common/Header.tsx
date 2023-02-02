@@ -1,10 +1,8 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import styled, { css } from "styled-components";
-import { RootState } from "../../modules";
-import { useDispatch } from "react-redux";
-import { setIsDarkMode } from "../../modules/modeReducer";
+
+import { DarkModeProps } from "./Layout";
 
 const Base = styled.header`
   width: 100%;
@@ -89,7 +87,7 @@ const ModeIcon = styled.svg`
     height: 20px;
   }
 `;
-const ToggleBtn = styled.button<{ isDarkMode: boolean }>`
+const ToggleBtn = styled.button<{ isDarkMode: boolean | null }>`
   padding: 3px;
   width: 2.5rem;
   height: fit-content;
@@ -116,11 +114,7 @@ const ToggleCircle = styled.div`
   }
 `;
 
-export default function Header() {
-  const dispatch = useDispatch();
-  const isDarkMode = useSelector(
-    (state: RootState) => state.modeReducer.isDarkMode,
-  );
+export default function Header({ isDarkMode, setIsDarkMode }: DarkModeProps) {
   const currentPath = useLocation().pathname;
   const navItems = [
     {
@@ -189,7 +183,7 @@ export default function Header() {
         </ModeIcon>
         <ToggleBtn
           isDarkMode={isDarkMode}
-          onClick={() => dispatch(setIsDarkMode())}
+          onClick={() => setIsDarkMode(!isDarkMode)}
         >
           <ToggleCircle />
         </ToggleBtn>

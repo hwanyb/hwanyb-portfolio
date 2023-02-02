@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SetStateAction } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
@@ -34,8 +34,11 @@ const Main = styled.main`
     height: calc(100% - 150px);
   }
 `;
-
-export default function Layout() {
+export type DarkModeProps = {
+  isDarkMode: boolean | null;
+  setIsDarkMode: React.Dispatch<SetStateAction<boolean | null>>;
+};
+export default function Layout({ isDarkMode, setIsDarkMode }: DarkModeProps) {
   const location = useLocation();
 
   return (
@@ -43,7 +46,7 @@ export default function Layout() {
       <CSSTransition key={location.pathname} timeout={1000} classNames="fade">
         <Base>
           <Background />
-          <Header />
+          <Header isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
           <Main>
             <Routes location={location}>
               <Route path="/" element={<Home />} />

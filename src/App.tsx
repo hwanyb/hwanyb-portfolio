@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import { useSelector } from "react-redux";
 
 import { GlobalStyle } from "./styles/GlobalStyle";
 import { darkTheme, lightTheme } from "./styles/theme";
-import { RootState } from "./modules";
 
 import Layout from "./components/common/Layout";
 
 function App() {
-  const isDarkMode = useSelector(
-    (state: RootState) => state.modeReducer.isDarkMode,
+  const darkMode: string | null = localStorage.getItem("darkMode");
+
+  const [isDarkMode, setIsDarkMode] = useState<boolean | null>(
+    darkMode !== null ? JSON.parse(darkMode) : false,
   );
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function App() {
     <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
       <GlobalStyle />
       <BrowserRouter>
-        <Layout />
+        <Layout isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
       </BrowserRouter>
     </ThemeProvider>
   );
