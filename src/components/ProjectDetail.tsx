@@ -1,17 +1,26 @@
 import React, { SetStateAction } from "react";
 import { ProjectItem } from "../pages/Projects";
-import { Label } from "../pages/About";
+import { Label } from "../pages/Contact";
 import styled, { css } from "styled-components";
 
 const Base = styled.div`
   width: 100vw;
   height: 100vh;
+  min-height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
   position: absolute;
   z-index: 1111;
   top: 0;
   left: 0;
+  @media ${(props) => props.theme.windowSize.mobile} {
+    /* mobile viewport bug fix */
+    /* iOS only */
+    @supports (-webkit-touch-callout: none) {
+      height: -webkit-fill-available;
+      min-height: -webkit-fill-available;
+    }
+  }
 `;
 const Container = styled.div`
   width: 100vw;
@@ -21,46 +30,55 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   @media ${(props) => props.theme.windowSize.desktop} {
-    padding: 50px 150px;
+    padding: 0 150px 50px 150px;
   }
   @media ${(props) => props.theme.windowSize.laptop} {
-    padding: 50px 100px;
+    padding: 0 100px 50px 100px;
   }
   @media ${(props) => props.theme.windowSize.tablet} {
-    padding: 50px 50px;
+    padding: 0 50px 50px 50px;
   }
   @media ${(props) => props.theme.windowSize.mobile} {
-    padding: 50px 20px;
+    padding: 0 20px 50px 20px;
   }
 `;
-
+const Header = styled.div`
+  width: 100vw;
+  position: sticky;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1111;
+  padding: 50px 20px;
+  background-color: ${(props) => props.theme.color.bgColor};
+  text-align: center;
+`;
 const CloseBtn = styled.div`
   position: fixed;
-  top: 0;
-  right: 0;
+  top: 20px;
+  right: 200px;
   z-index: 11111;
   cursor: pointer;
   width: 2rem;
   height: 2rem;
   transition: all 0.2s ease-in-out;
   & span {
-    top: 2rem;
-    right: 50px;
-    position: fixed;
+    top: 50%;
+    right: 15%;
+    position: absolute;
     width: 1.5rem;
     height: 1px;
     background-color: ${(props) => props.theme.color.textColor};
-    @media ${(props) => props.theme.windowSize.tablet} {
-      right: 20px;
-    }
-    @media ${(props) => props.theme.windowSize.mobile} {
-      right: 10px;
-    }
   }
   @media (hover: hover) {
     &:hover {
       opacity: 0.5;
     }
+  }
+  @media ${(props) => props.theme.windowSize.tablet} {
+    right: 20px;
   }
 `;
 
@@ -106,19 +124,28 @@ const MockupImgWrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
-  background-color: transparent;
+  background-color: ${(props) => props.theme.color.textColor}10;
+  @media ${(props) => props.theme.windowSize.tablet} {
+    height: 300px;
+  }
   @media ${(props) => props.theme.windowSize.mobile} {
+    height: 200px;
   }
 `;
 const MockupImg = styled.img`
+  object-fit: contain;
   width: 100%;
+    @media ${(props) => props.theme.windowSize.mobile} {
+      object-fit: cover;
+      height: 200px;
+  }
 `;
 const InfoWrapper = styled.ul`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 1rem;
   margin-top: 3rem;
-  @media ${(props) => props.theme.windowSize.mobile} {
+  @media ${(props) => props.theme.windowSize.tablet} {
     display: flex;
     flex-direction: column;
   }
@@ -154,15 +181,6 @@ const FeatureImgWrapper = styled.div`
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  @media ${(props) => props.theme.windowSize.desktop} {
-    height: 500px;
-  }
-  @media ${(props) => props.theme.windowSize.tablet} {
-    height: 400px;
-  }
-  @media ${(props) => props.theme.windowSize.mobile} {
-    height: 300px;
-  }
 `;
 const FeatureImg = styled.img`
   width: 100%;
@@ -198,26 +216,29 @@ export default function ProjectDetail({
     <Base>
       {selectedData !== undefined && (
         <Container>
-          <CloseBtn onClick={() => setIsDetailOpened(false)}>
-            <Line1 />
-            <Line2 />
-          </CloseBtn>
-          <Hr />
-          <Desc>{selectedData?.scale}</Desc>
-          <Title>{selectedData?.title}</Title>
-          <LinkBtnWrapper>
-            <button>
-              <a href={selectedData?.githubLink} target="_blank">
-                Github
-              </a>
-            </button>
-            <button>
-              <a href={selectedData?.demoLink} target="_blank">
-                {selectedData?.titleEn}
-              </a>
-            </button>
-          </LinkBtnWrapper>
-          <Desc>{selectedData?.short}</Desc>
+          <Header>
+            <CloseBtn onClick={() => setIsDetailOpened(false)}>
+              <Line1 />
+              <Line2 />
+            </CloseBtn>
+            <Hr />
+            <Desc>{selectedData?.scale}</Desc>
+            <Title>{selectedData?.title}</Title>
+            <LinkBtnWrapper>
+              <button>
+                <a href={selectedData?.githubLink} target="_blank">
+                  Github
+                </a>
+              </button>
+              <button>
+                <a href={selectedData?.demoLink} target="_blank">
+                  {selectedData?.titleEn}
+                </a>
+              </button>
+            </LinkBtnWrapper>
+            <Desc>{selectedData?.short}</Desc>
+          </Header>
+
           <MockupImgWrapper>
             <MockupImg src={process.env.PUBLIC_URL + selectedData?.mockup!} />
           </MockupImgWrapper>

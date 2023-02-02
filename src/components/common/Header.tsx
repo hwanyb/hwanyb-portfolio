@@ -44,7 +44,7 @@ const Nav = styled.nav`
   }
   @media ${(props) => props.theme.windowSize.mobile} {
     width: calc(100% - 40px);
-    top: 60px;
+    top: 70px;
   }
 `;
 const NavItem = styled(Link)<{ currentPath: string }>`

@@ -65,6 +65,11 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0.2rem 1rem;
         transition: all 0.3s ease-in-out;
     }
+    img {
+        image-rendering: -webkit-optimize-contrast;
+        backface-visibility: hidden;
+        transform: translateZ(0);
+    }
 
     @media (hover: hover) {
         button:hover {

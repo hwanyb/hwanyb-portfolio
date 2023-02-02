@@ -23,6 +23,8 @@ const Yellow = styled.svg<{ location: string }>`
           width: 425px;
           filter: blur(100px);
           transform: translate(-30vw, 50vh);
+          @media ${(props) => props.theme.windowSize.mobile} {
+          }
         `
       : props.location === "/about"
       ? css`
@@ -51,6 +53,10 @@ const Blue = styled.svg<{ location: string }>`
           width: 573px;
           filter: blur(100px);
           transform: translate(-10vw, 20vh);
+          @media ${(props) => props.theme.windowSize.mobile} {
+            transform: translate(10vw, -5vh);
+            opacity: 0.7;
+          }
         `
       : props.location === "/about"
       ? css`

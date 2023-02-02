@@ -4,13 +4,27 @@ import styled from "styled-components";
 import Footer from "../components/common/Footer";
 
 const Base = styled.div`
-  display: flex;
-  align-items: center;
-  height: 100%;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 `;
 const Introduce = styled.div`
-  margin-top: -150px;
+  margin-top: 15%;
+  @media ${(props) => props.theme.windowSize.desktop} {
+    margin-top: 20%;
+  }
+  @media ${(props) => props.theme.windowSize.laptop} {
+    margin-top: 25%;
+  }
+  @media ${(props) => props.theme.windowSize.laptop} {
+    margin-top: 40%;
+  }
+  @media ${(props) => props.theme.windowSize.mobile} {
+    margin-top: 15%;
+    text-align: center;
+  }
 `;
 const Position = styled.h3`
   font-size: ${(props) => props.theme.fontSize.base};
@@ -22,6 +36,16 @@ const Greeting = styled.h1`
   font-weight: 200;
   & b {
     font-weight: 800;
+  }
+
+  @media ${(props) => props.theme.windowSize.laptop} {
+    font-size: 3.5rem;
+  }
+  @media ${(props) => props.theme.windowSize.tablet} {
+    font-size: 3rem;
+  }
+  @media ${(props) => props.theme.windowSize.mobile} {
+    font-size: 2.5rem;
   }
 `;
 

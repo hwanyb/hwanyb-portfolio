@@ -9,6 +9,9 @@ const Base = styled.div`
   display: flex;
   align-items: center;
   padding-bottom: 50px;
+  @media ${(props) => props.theme.windowSize.tablet} {
+    padding-top: 50px;
+  }
 `;
 const ProjectsContainer = styled.div`
   width: 100%;
@@ -23,6 +26,9 @@ const ProjectsWrapper = styled.ul`
   display: flex;
   gap: 4rem;
   margin-bottom: 50px;
+  @media ${(props) => props.theme.windowSize.mobile} {
+    margin-bottom: 30px;
+  }
 `;
 const ProjectItem = styled.li`
   width: 460px;
@@ -43,6 +49,12 @@ const ProjectItem = styled.li`
       background-color: rgba(255, 255, 255, 0.5);
     }
   }
+  @media ${(props) => props.theme.windowSize.tablet} {
+    width: 380px;
+  }
+  @media ${(props) => props.theme.windowSize.mobile} {
+    width: 300px;
+  }
 `;
 const ThumbnailWrapper = styled.div`
   background-color: rgba(255, 255, 255, 0.3);
@@ -53,13 +65,15 @@ const ThumbnailWrapper = styled.div`
   box-shadow: 0 0 10px rgba(9, 9, 9, 0.1);
   margin-bottom: 3rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
+  isolation: isolate;
+  @media ${(props) => props.theme.windowSize.tablet} {
+    height: 200px;
+  }
 `;
 
 const ThumbnailImg = styled.img`
-width: 100%;
+  width: 100%;
   object-fit: cover;
 `;
 const Desc = styled.p`
@@ -107,8 +121,8 @@ export type ProjectItem = {
     title: string;
     img: string;
     desc: {
-      text: string
-    }[]
+      text: string;
+    }[];
   }[];
 };
 export default function Projects() {
@@ -132,25 +146,27 @@ export default function Projects() {
         <Base>
           <ProjectsContainer>
             <ProjectsWrapper>
-              {projectsData.sort((a, b) => b.id - a.id).map((item) => (
-                <ProjectItem
-                  key={item.id}
-                  onClick={(e: React.SyntheticEvent<HTMLLIElement>) =>
-                    onCardClick(e, item)
-                  }
-                >
-                  <ThumbnailWrapper>
-                    <ThumbnailImg
-                      src={process.env.PUBLIC_URL + item.thumbnail}
-                    />
-                  </ThumbnailWrapper>
-                  <Desc>{item.scale}</Desc>
-                  <Title>{item.title}</Title>
-                  <Skills>{item.skills}</Skills>
-                  <Hr />
-                  <Desc>{item.short}</Desc>
-                </ProjectItem>
-              ))}
+              {projectsData
+                .sort((a, b) => b.id - a.id)
+                .map((item) => (
+                  <ProjectItem
+                    key={item.id}
+                    onClick={(e: React.SyntheticEvent<HTMLLIElement>) =>
+                      onCardClick(e, item)
+                    }
+                  >
+                    <ThumbnailWrapper>
+                      <ThumbnailImg
+                        src={process.env.PUBLIC_URL + item.thumbnail}
+                      />
+                    </ThumbnailWrapper>
+                    <Desc>{item.scale}</Desc>
+                    <Title>{item.title}</Title>
+                    <Skills>{item.skills}</Skills>
+                    <Hr />
+                    <Desc>{item.short}</Desc>
+                  </ProjectItem>
+                ))}
             </ProjectsWrapper>
           </ProjectsContainer>
         </Base>

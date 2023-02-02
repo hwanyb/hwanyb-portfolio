@@ -12,23 +12,35 @@ from {
 
 const Base = styled.div`
   width: 100%;
+  padding-bottom: 50px;
   display: flex;
   justify-content: space-between;
   align-items: end;
-  position: absolute;
-  bottom: 50px;
+  @media ${(props) => props.theme.windowSize.mobile} {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 const Circle1 = styled.svg`
+  width: 209px;
   & path {
     animation: ${Ani} 2s 0.2s infinite ease-in-out;
   }
+
+  @media ${(props) => props.theme.windowSize.mobile} {
+    width: 150px;
+  }
 `;
 const Circle2 = styled.svg`
+  width: 221px;
   & path {
     animation: ${Ani} 3s infinite ease-in-out;
   }
+  @media ${(props) => props.theme.windowSize.mobile} {
+    width: 170px;
+  }
 `;
-const ResumeWrapper = styled.div`
+const ResumeWrapper = styled.a`
   position: relative;
   cursor: pointer;
   width: 200px;
@@ -52,6 +64,11 @@ const ResumeWrapper = styled.div`
     fill: none;
     stroke-dasharray: 630;
   }
+  @media ${(props) => props.theme.windowSize.mobile} {
+    width: 150px;
+    height: 100px;
+    margin-bottom: 4rem;
+  }
 `;
 
 const Text = styled.h3`
@@ -60,12 +77,16 @@ const Text = styled.h3`
   font-weight: 600;
   left: 50%;
   transform: translateX(-50%);
+  color: ${(props) => props.theme.color.textColor};
 `;
 const DetailWrapper = styled.div``;
 const LinkBtnWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
+  @media ${(props) => props.theme.windowSize.mobile} {
+    justify-content: center;
+  }
 `;
 const LinkBtn = styled.button``;
 const UpdateDate = styled.p`
@@ -76,20 +97,27 @@ const UpdateDate = styled.p`
   & b {
     font-weight: 800;
   }
+  @media ${(props) => props.theme.windowSize.mobile} {
+    text-align: center;
+  }
 `;
 const Rights = styled.p`
   font-size: ${(props) => props.theme.fontSize.sm};
   font-weight: 400;
   text-align: right;
+  @media ${(props) => props.theme.windowSize.mobile} {
+    text-align: center;
+  }
 `;
 
 export default function Footer() {
   return (
     <Base>
-      <ResumeWrapper>
+      <ResumeWrapper
+        href={process.env.PUBLIC_URL + "/assets/resume.pdf"}
+        target="_blank"
+      >
         <Circle1
-          width="209"
-          height="123"
           viewBox="0 0 209 123"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -97,8 +125,6 @@ export default function Footer() {
           <path d="M206.788 21.8306C211.643 34.4174 204.851 50.3021 189.56 65.8809C174.304 81.4244 150.726 96.5067 122.436 107.418C94.1458 118.328 66.5461 122.984 44.8038 121.71C23.0121 120.434 7.31312 113.223 2.45866 100.636C-2.39579 88.0495 4.3958 72.1648 19.6867 56.5859C34.9428 41.0424 58.5214 25.9601 86.8113 15.0493C115.101 4.13846 142.701 -0.517619 164.443 0.756361C186.235 2.03324 201.934 9.24382 206.788 21.8306Z" />
         </Circle1>
         <Circle2
-          width="221"
-          height="101"
           viewBox="0 0 221 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

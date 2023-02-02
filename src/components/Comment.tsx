@@ -3,11 +3,14 @@ import EmojiPicker, { Emoji, EmojiClickData } from "emoji-picker-react";
 import styled from "styled-components";
 
 import { dbService } from "../firebase";
-import { Label } from "../pages/About";
+import { Theme } from "emoji-picker-react";
+import { DarkModeProps } from "./common/Layout";
+import { Label } from "../pages/Contact";
 
 const Base = styled.div`
   width: 100%;
   position: relative;
+  margin-bottom: 100px;
 `;
 const CommentInputWrapper = styled.div`
   display: grid;
@@ -19,7 +22,7 @@ const CommentInputWrapper = styled.div`
   -webkit-backdrop-filter: blur(25px);
   box-shadow: 0 0 10px rgba(9, 9, 9, 0.1);
   backdrop-filter: blur(25px);
-  padding: 1rem 2rem;
+  padding: 0.5rem 1rem;
   grid-gap: 2rem;
   align-items: center;
   margin-bottom: 2rem;
@@ -70,20 +73,29 @@ const CommentInput = styled.textarea`
   font-weight: 400;
   line-height: ${(props) => props.theme.fontSize.base};
   height: ${(props) => props.theme.fontSize.base};
+  color: ${(props) => props.theme.color.textColor};
+  &::placeholder {
+    color: ${(props) => props.theme.color.textColor}90;
+  }
   &::-webkit-scrollbar {
     display: none;
   }
 `;
-const SubmitBtn = styled.button``;
+const SubmitBtn = styled.button`
+  white-space: nowrap;
+`;
 const CommentList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  height: 300px;
+  height: 400px;
   overflow-y: auto;
   padding: 1rem 2rem 1rem 0.2rem;
   align-items: center;
   width: 100%;
+  @media ${(props) => props.theme.windowSize.mobile} {
+    height: 250px;
+  }
 `;
 const CommentItem = styled.li`
   display: flex;
@@ -116,7 +128,7 @@ type CommentProps = {
   timestamp: number;
 };
 
-export default function Comment() {
+export default function Comment({ isDarkMode, setIsDarkMode }: DarkModeProps) {
   const [isOpenedEmojiPicker, setIsOpenedEmojiPicker] =
     useState<boolean>(false);
   const [commentObj, setCommentObj] = useState<CommentProps>({
@@ -229,7 +241,15 @@ export default function Comment() {
       </CommentList>
       <EmojiPickerWrapper>
         {isOpenedEmojiPicker && (
-          <EmojiPicker height={350} width="50%" onEmojiClick={onEmojiClick} />
+          <EmojiPicker
+            lazyLoadEmojis={true}
+            searchDisabled={true}
+            height={350}
+            width="50%"
+            onEmojiClick={onEmojiClick}
+            theme={isDarkMode ? Theme.DARK : Theme.LIGHT}
+            previewConfig={{ defaultCaption: "이모지를 선택해 주세요!" }}
+          />
         )}
       </EmojiPickerWrapper>
     </Base>
