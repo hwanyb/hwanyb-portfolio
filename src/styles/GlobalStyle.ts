@@ -74,28 +74,51 @@ export const GlobalStyle = createGlobalStyle`
     @media (hover: hover) {
         button:hover {
             background-color: ${(props) => props.theme.color.textColor}10;
-    } 
-}
+        } 
+    }
 
-.transition-group {
-  position: relative;
-}
+    .transition-group {
+    position: relative;
+    }
 
-.fade-enter {
-  opacity: 0;
-}
+    .fade-enter {
+    opacity: 0;
+    }
 
-.fade-enter-active {
-  opacity: 1;
-  transition: all 1s ease-in-out;
-}
+    .fade-enter-active {
+    opacity: 1;
+    transition: all 1s ease-in-out;
+    }
 
-.fade-exit {
-  opacity: 1;
-}
+    .fade-exit {
+    opacity: 1;
+    }
 
-.fade-exit-active {
-  opacity: 0;
-  transition: all 1s ease-in-out;
-}
+    .fade-exit-active {
+    opacity: 0;
+    transition: all 1s ease-in-out;
+    }
+    .swiper-pagination-bullet{
+        background-color: transparent;
+        border: ${(props) => props.theme.color.borderColor};
+        opacity: 1;
+        transition: all 0.2s ease-in-out;
+
+        @media (hover: hover) {
+            &:hover{
+                background-color: ${(props) => props.theme.color.textColor}10;
+            }
+        }
+    }
+    .swiper-pagination-bullet-active{
+        background-color: ${(props) => props.theme.color.textColor};
+        width: 1.5rem;
+        border-radius: 5px;
+        @media (hover: hover) {
+            &:hover{
+                background-color: ${(props) => props.theme.color.textColor};
+                opacity: 0.5;
+            }
+        }
+    }
 `;
