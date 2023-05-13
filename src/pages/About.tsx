@@ -37,7 +37,7 @@ const NameWrapper = styled.div`
   }
   & h4 {
     font-size: ${(props) => props.theme.fontSize.base};
-    font-weight: 300;
+    font-weight: 400;
     margin-top: 1rem;
   }
 `;
@@ -51,7 +51,7 @@ const ProfileLabel = styled.p`
   font-size: ${(props) => props.theme.fontSize.base};
   display: flex;
   align-items: center;
-  font-weight: 300;
+  font-weight: 400;
   &::before {
     content: "";
     width: 3px;
@@ -87,7 +87,7 @@ const Title = styled.h2`
   margin-bottom: 0.5rem;
 `;
 const DetailItem = styled.li``;
-const Label = styled.label`
+export const Label = styled.label`
   display: flex;
   align-items: center;
   line-height: 2.5rem;
@@ -109,21 +109,21 @@ const SubTitle = styled.h3`
 const Desc = styled.p`
   white-space: pre;
   font-size: ${(props) => props.theme.fontSize.sm};
-  font-weight: 300;
+  font-weight: 400;
   margin-top: 10px;
 `;
 
 const SkillDesc = styled.p`
   position: absolute;
   font-size: ${(props) => props.theme.fontSize.sm};
-  font-weight: 300;
+  font-weight: 400;
   display: none;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
   padding: 0 2rem;
-  background-color: ${props => props.theme.color.bgColor};
+  background-color: ${(props) => props.theme.color.bgColor};
   backdrop-filter: blur(100px);
   -webkit-backdrop-filter: blur(100px);
   border-radius: 30px;
@@ -131,8 +131,7 @@ const SkillDesc = styled.p`
   flex-direction: column;
   justify-content: center;
   & b {
-  font-weight: 600;
-
+    font-weight: 600;
   }
 `;
 
@@ -150,7 +149,7 @@ const SkillWrapper = styled.div`
   border-radius: 30px;
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
-  box-shadow: 0 0 5px rgba(9, 9, 9, 0.1);
+  box-shadow: 0 0 10px rgba(9, 9, 9, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.3);
   margin-bottom: 1.5rem;
   &:last-child {
@@ -235,7 +234,11 @@ export default function About() {
                   >
                     <path d={item.icon} fill={item.color}></path>
                   </svg>
-                  <SkillDesc><b>{item.title}</b><br />{item.desc}</SkillDesc>
+                  <SkillDesc>
+                    <b>{item.title}</b>
+                    <br />
+                    {item.desc}
+                  </SkillDesc>
                 </SkillItem>
               ))}
             </SkillWrapper>
@@ -251,7 +254,11 @@ export default function About() {
                   >
                     <path d={item.icon} fill={item.color}></path>
                   </svg>
-                  <SkillDesc><b>{item.title}</b><br />{item.desc}</SkillDesc>
+                  <SkillDesc>
+                    <b>{item.title}</b>
+                    <br />
+                    {item.desc}
+                  </SkillDesc>
                 </SkillItem>
               ))}
             </SkillWrapper>
