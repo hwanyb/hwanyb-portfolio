@@ -1,46 +1,55 @@
-# Getting Started with Create React App
+<div align=center>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# **반응형 웹 포트폴리오**
 
-## Available Scripts
+![portfolio](https://github.com/hwanyb/chatmung_v2/assets/80311884/e8d5ddd1-b180-4780-9263-a20c00b1ed00)
+<br/><br/>
+`React`를 사용해 제작한 반응형 웹 포트폴리오입니다.<br />
+다크모드 기능, 댓글기능을 구현하였으며 유지보수에 용이하게 하기 위해 `json`파일로 데이터를 관리하고 있습니다.
 
-In the project directory, you can run:
+### [😃포트폴리오 방문하기](https://hwanyb.xyz/)
 
-### `npm start`
+</div>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 🔍 미리보기
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 반응형 스타일링
+![1](https://github.com/hwanyb/assets/blob/master/portfolio_readme/4_1.gif?raw=true)
 
-### `npm test`
+### 다크모드 기능
+![2](https://github.com/hwanyb/assets/blob/master/portfolio_readme/4_2.gif?raw=true)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 라우팅 기능
+![3](https://github.com/hwanyb/assets/blob/master/portfolio_readme/4_3.gif?raw=true)
 
-### `npm run build`
+### 홈페이지
+![4](https://github.com/hwanyb/assets/blob/master/portfolio_readme/4_4.gif?raw=true)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 소개페이지
+![5](https://github.com/hwanyb/assets/blob/master/portfolio_readme/4_5.gif?raw=true)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 프로젝트 페이지
+![6](https://github.com/hwanyb/assets/blob/master/portfolio_readme/4_6.gif?raw=true)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 컨택트 페이지
+![7](https://github.com/hwanyb/assets/blob/master/portfolio_readme/4_7.gif?raw=true)
 
-### `npm run eject`
+## 🕑 작업기간
+2023.01.30 - 2023.02.02 (4일)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 🛠기술 스택
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<div align=left>
+<img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
+<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
+<img src="https://img.shields.io/badge/styled_components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white">
+<img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black">
+</div>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 📌 기능 소개
+- 반응형 웹
+- 다크모드 기능
+- SPA 라우팅 기능
+- 개인정보 및 링크 제공
+- 프로젝트 정보 제공
+- 피드백을 위한 댓글 기능
