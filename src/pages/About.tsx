@@ -12,9 +12,18 @@ const Base = styled.div`
   height: 100%;
   padding-bottom: 50px;
   @media ${(props) => props.theme.windowSize.tablet} {
+    height: 100%;
     padding: 50px 0;
-    overflow: hidden scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
     padding-right: 2rem;
+  }
+  /* mobile viewport bug fix */
+  /* iOS only */
+  @supports (-webkit-touch-callout: none) {
+    height: -webkit-fill-available;
+    min-height: -webkit-fill-available;
+    padding-right: 0;
   }
 `;
 
@@ -58,6 +67,9 @@ const ProfileImg = styled.div`
   }
 `;
 const NameWrapper = styled.div`
+  @media ${(props) => props.theme.windowSize.tablet} {
+    text-align: center;
+  }
   & h1 {
     font-size: 4rem;
     font-weight: 900;
