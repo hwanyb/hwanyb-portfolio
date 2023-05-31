@@ -37,7 +37,7 @@ const Nav = styled.nav`
   margin-right: 3rem;
   @media ${(props) => props.theme.windowSize.tablet} {
     position: absolute;
-    width: calc(100% - 100px);
+    width: calc(100% - 60px);
     top: 80px;
     margin-right: 0;
     justify-content: space-between;

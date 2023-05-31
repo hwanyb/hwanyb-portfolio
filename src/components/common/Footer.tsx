@@ -143,7 +143,7 @@ export default function Footer() {
           </a>
         </LinkBtnWrapper>
         <UpdateDate>
-          Last Update : <b>2023.01.31</b>
+          Last Update : <b>2023.05.13</b>
         </UpdateDate>
         <Rights>Copyright 2023. byunhwanhee all rights reserved.</Rights>
       </DetailWrapper>

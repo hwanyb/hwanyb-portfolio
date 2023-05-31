@@ -1,6 +1,6 @@
 import React, { SetStateAction, useState, useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import Header from "./Header";
@@ -37,12 +37,14 @@ const Base = styled.div<{ innerHeight: number }>`
     }
   }
 `;
-const Main = styled.main`
+const Main = styled.main<{ location: string }>`
   width: 100%;
   height: calc(100% - 100px);
-  bottom: 0;
+  /* bottom: 0; */
   @media ${(props) => props.theme.windowSize.tablet} {
-    /* height: calc(100% - 150px); */
+    ${props => props.location === "/about" && css`
+      /* height: 110%; */
+    `}
   }
 `;
 export type DarkModeProps = {
@@ -63,7 +65,7 @@ export default function Layout({ isDarkMode, setIsDarkMode }: DarkModeProps) {
         <Base innerHeight={innerHeight}>
           <Background />
           <Header isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
-          <Main>
+          <Main location={location.pathname}>
             <Routes location={location}>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />

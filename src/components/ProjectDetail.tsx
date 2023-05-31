@@ -44,9 +44,6 @@ const Container = styled.div`
 `;
 const Header = styled.div`
   width: 100vw;
-  position: sticky;
-  top: 0;
-  left: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -64,9 +61,13 @@ const CloseBtn = styled.div`
   width: 2rem;
   height: 2rem;
   transition: all 0.2s ease-in-out;
+  background-color: ${(props) => props.theme.color.bgColor}80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+
   & span {
-    top: 50%;
-    right: 15%;
     position: absolute;
     width: 1.5rem;
     height: 1px;
@@ -77,7 +78,17 @@ const CloseBtn = styled.div`
       opacity: 0.5;
     }
   }
+
+  @media ${(props) => props.theme.windowSize.desktop} {
+    right: 150px;
+  }
+  @media ${(props) => props.theme.windowSize.laptop} {
+    right: 100px;
+  }
   @media ${(props) => props.theme.windowSize.tablet} {
+    right: 50px;
+  }
+  @media ${(props) => props.theme.windowSize.mobile} {
     right: 20px;
   }
 `;
