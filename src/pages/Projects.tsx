@@ -4,9 +4,10 @@ import styled from "styled-components";
 import projectsData from "../data/projects.json";
 import ProjectDetail from "../components/ProjectDetail";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper";
+import { Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 const Base = styled.div`
   height: 100%;
@@ -18,7 +19,7 @@ const Base = styled.div`
   }
 `;
 const ProjectsWrapper = styled(Swiper)`
-  padding: 1rem 1rem;
+  padding: 1rem 2rem;
   width: 100%;
   height: 80%;
   margin-bottom: 50px;
@@ -28,7 +29,6 @@ const ProjectsWrapper = styled(Swiper)`
 `;
 const ProjectItem = styled(SwiperSlide)`
   height: 95%;
-
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 30px;
   padding: 2rem;
@@ -140,7 +140,8 @@ export default function Projects() {
             spaceBetween={50}
             slidesPerView={1}
             pagination={{ clickable: true }}
-            modules={[Pagination]}
+            navigation={true}
+            modules={[Pagination, Navigation]}
             breakpoints={{
               768: {
                 slidesPerView: 2,

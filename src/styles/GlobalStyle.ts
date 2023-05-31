@@ -121,4 +121,20 @@ export const GlobalStyle = createGlobalStyle`
             }
         }
     }
+    .swiper-button-next {
+        color: ${props => props.theme.color.textColor};
+        right: 0;
+        justify-content: end;
+        &::after{
+            font-size: 2rem;
+        }
+    }
+    .swiper-button-prev {
+        color: ${props => props.theme.color.textColor};
+        left: 0;
+        justify-content: start;
+        &::after{
+            font-size: 2rem;
+        }
+    }
 `;
