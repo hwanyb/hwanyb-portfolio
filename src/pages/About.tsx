@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import profileData from "../data/profile.json";
 import educationData from "../data/education.json";
@@ -12,19 +12,9 @@ const Base = styled.div`
   height: 100%;
   padding-bottom: 50px;
   @media ${(props) => props.theme.windowSize.tablet} {
-    width: 100vw;
-    height: 100vh;
-    min-height: 100vh;
     padding: 50px 0;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden scroll;
     padding-right: 2rem;
-    /* mobile viewport bug fix */
-    /* iOS only */
-    @supports (-webkit-touch-callout: none) {
-      height: -webkit-fill-available;
-      min-height: -webkit-fill-available;
-    }
   }
 `;
 
@@ -126,10 +116,10 @@ const DetailWrapper = styled.ul`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  gap: 1.5rem;
   @media ${(props) => props.theme.windowSize.mobile} {
     flex-direction: column;
     margin: 0 auto;
-    gap: 1.5rem;
   }
 `;
 const Title = styled.h2`
@@ -172,6 +162,15 @@ const Desc = styled.p`
   font-size: ${(props) => props.theme.fontSize.sm};
   font-weight: 400;
   margin-top: 10px;
+
+  ${(props) =>
+    props.id === "skill" &&
+    css`
+      z-index: 4444;
+      position: absolute;
+      font-weight: 600;
+    `}
+
   @media ${(props) => props.theme.windowSize.mobile} {
     text-align: center;
   }
@@ -288,7 +287,7 @@ export default function About() {
             <Title>Skill Set.</Title>
             <SkillContainer>
               <SkillWrapper>
-                <Desc>Front-End</Desc>
+                <Desc id="skill">Front-End</Desc>
                 {frontendSkillData.map((item) => (
                   <SkillItem key={item.id}>
                     <svg
@@ -308,7 +307,7 @@ export default function About() {
                 ))}
               </SkillWrapper>
               <SkillWrapper>
-                <Desc>ETC.</Desc>
+                <Desc id="skill">ETC.</Desc>
                 {etcSkillData.map((item) => (
                   <SkillItem key={item.id}>
                     <svg
