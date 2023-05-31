@@ -183,18 +183,24 @@ export default function Comment({ isDarkMode, setIsDarkMode }: DarkModeProps) {
         ":" +
         second;
 
-      await dbService.collection("comment").add({
-        createdAt: returnDate,
-        timestamp: now,
-        emoji: commentObj.emoji,
-        text: commentObj.text,
-      });
+      if (commentObj.text === "") {
+        alert("내용을 입력해 주세요! 😃");
+      } else if (commentObj.text.length < 2) {
+        alert("내용을 2자 이상 입력해 주세요! 😃");
+      } else {
+        await dbService.collection("comment").add({
+          createdAt: returnDate,
+          timestamp: now,
+          emoji: commentObj.emoji,
+          text: commentObj.text,
+        });
 
-      setCommentObj({
-        ...commentObj,
-        text: "",
-        emoji: "",
-      });
+        setCommentObj({
+          ...commentObj,
+          text: "",
+          emoji: "",
+        });
+      }
     }
   };
 
@@ -231,7 +237,10 @@ export default function Comment({ isDarkMode, setIsDarkMode }: DarkModeProps) {
       <CommentList>
         {comments.map((comment) => (
           <CommentItem key={comment.timestamp}>
-            <Emoji unified={comment.emoji} size={25} />
+            <Emoji
+              unified={comment.emoji === "" ? "1f4ac" : comment.emoji}
+              size={25}
+            />
             <CommentTextWrapper>
               <CommentDate>{comment.createdAt}</CommentDate>
               <CommentText>{comment.text}</CommentText>
